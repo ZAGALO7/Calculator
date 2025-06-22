@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Calculator</title>
+</head>
+<body>
+
+<h1>Simple Calculator</h1>
+
+<input type="number" id="num1" placeholder="First number">
+<input type="number" id="num2" placeholder="Second number"><br><br>
+<button onclick="calculate()">Calculate</button>
+
+<div id="results"></div>
+
+<script>
+function calculate() {
+  const a = Number(document.getElementById('num1').value);
+  const b = Number(document.getElementById('num2').value);
+
+  if (isNaN(a) || isNaN(b)) {
+    document.getElementById('results').innerHTML = 'Please enter valid numbers.';
+    return;
+  }
+
+  let results = `
+    <p>Addition: ${a + b}</p>
+    <p>Subtraction: ${a - b}</p>
+    <p>Multiplication: ${a * b}</p>
+    <p>Division: ${b !== 0 ? (a / b) : 'Error (division by zero)'}</p>
+    <p>Floor Division: ${b !== 0 ? Math.floor(a / b) : 'Error (division by zero)'}</p>
+    <p>Modulus: ${b !== 0 ? (a % b) : 'Error (division by zero)'}</p>
+    <p>Power: ${Math.pow(a, b)}</p>
+  `;
+
+  document.getElementById('results').innerHTML = results;
+}
+</script>
+
+</body>
+  
+</html>
