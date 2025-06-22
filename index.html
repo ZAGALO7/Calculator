@@ -2,41 +2,74 @@
 <html>
 <head>
   <title>Simple Calculator</title>
+  <style>
+    body {
+      display: flex;              /* Makes page use flexible box */
+      justify-content: center;    /* Centers content horizontally */
+      align-items: center;        /* Centers content vertically */
+      height: 100vh;              /* Full viewport height */
+      margin: 0;                  /* Remove default margin */
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+    }
+    .calculator {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input {
+      margin: 10px 5px;
+      padding: 8px;
+      width: 150px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #results p {
+      margin: 5px 0;
+    }
+  </style>
 </head>
 <body>
 
-<h1>Simple Calculator</h1>
+  <div class="calculator">
+    <h1>Simple Calculator</h1>
+    <input type="number" id="num1" placeholder="First number">
+    <input type="number" id="num2" placeholder="Second number"><br><br>
+    <button onclick="calculate()">Calculate</button>
+    <div id="results"></div>
+  </div>
 
-<input type="number" id="num1" placeholder="First number">
-<input type="number" id="num2" placeholder="Second number"><br><br>
-<button onclick="calculate()">Calculate</button>
+  <script>
+    function calculate() {
+      const a = Number(document.getElementById('num1').value);
+      const b = Number(document.getElementById('num2').value);
 
-<div id="results"></div>
+      if (isNaN(a) || isNaN(b)) {
+        document.getElementById('results').innerHTML = 'Please enter valid numbers.';
+        return;
+      }
 
-<script>
-function calculate() {
-  const a = Number(document.getElementById('num1').value);
-  const b = Number(document.getElementById('num2').value);
+      let results = `
+        <p>Addition: ${a + b}</p>
+        <p>Subtraction: ${a - b}</p>
+        <p>Multiplication: ${a * b}</p>
+        <p>Division: ${b !== 0 ? (a / b) : 'Error (division by zero)'}</p>
+        <p>Floor Division: ${b !== 0 ? Math.floor(a / b) : 'Error (division by zero)'}</p>
+        <p>Modulus: ${b !== 0 ? (a % b) : 'Error (division by zero)'}</p>
+        <p>Power: ${Math.pow(a, b)}</p>
+      `;
 
-  if (isNaN(a) || isNaN(b)) {
-    document.getElementById('results').innerHTML = 'Please enter valid numbers.';
-    return;
-  }
-
-  let results = `
-    <p>Addition: ${a + b}</p>
-    <p>Subtraction: ${a - b}</p>
-    <p>Multiplication: ${a * b}</p>
-    <p>Division: ${b !== 0 ? (a / b) : 'Error (division by zero)'}</p>
-    <p>Floor Division: ${b !== 0 ? Math.floor(a / b) : 'Error (division by zero)'}</p>
-    <p>Modulus: ${b !== 0 ? (a % b) : 'Error (division by zero)'}</p>
-    <p>Power: ${Math.pow(a, b)}</p>
-  `;
-
-  document.getElementById('results').innerHTML = results;
-}
-</script>
+      document.getElementById('results').innerHTML = results;
+    }
+  </script>
 
 </body>
-  
-</html>
+<
+  /html>
